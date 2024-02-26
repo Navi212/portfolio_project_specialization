@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-blog-alx_project",
+  "name": "portfolio_project_specialization",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://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@github.com/stanarthur/NodeJs-blog-alx_project.git"
+    "url": "git+https://github.com/Navi212/portfolio_project_specialization.git"
   },
   "keywords": [],
   "author": "Ikenna Dimkpa, Joseph Nweke, Stanhope Chinonso",
   "license": "MIT License",
   "bugs": {
-    "url": "https://github.com/stanarthur/NodeJs-blog-alx_project/issues"
+    "url": "https://github.com/Navi212/portfolio_project_specialization/issues"
   },
-  "homepage": "https://github.com/stanarthur/NodeJs-blog-alx_project#readme",
+  "homepage": "https://github.com/Navi212/portfolio_project_specialization#readme",
   "description": "",
   "dependencies": {
     "a": "^3.0.1",
