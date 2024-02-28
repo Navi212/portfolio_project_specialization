@@ -8,7 +8,10 @@ const PORT = process.env.PORT || 5000;
 
 // Connect to database
 connectDB();
-// Load and set middlewares
+
+// addind middleware to parse the request body
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static("public"));
 app.use(expressLayout);
 app.set("layout", "./layouts/main");
