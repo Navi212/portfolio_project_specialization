@@ -9,15 +9,15 @@ const PORT = process.env.PORT || 5000;
 // Connect to database
 connectDB();
 
-// addind middleware to parse the request body
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.static("public"));
-app.use(expressLayout);
-app.set("layout", "./layouts/main");
-app.set("view engine", "ejs");
+// adding middleware to parse the request body
+app.use(express.urlencoded({ extended: true })); // parse application/x-www-form-urlencoded
+app.use(express.json()); // parse application/json
+app.use(express.static("public"));  // to serve static files
+app.use(expressLayout);  // to use ejs layout
+app.set("layout", "./layouts/main");  // to use ejs layout
+app.set("view engine", "ejs");  // to use ejs template engine
 
-app.use("/", require("./server/routes/main"));
+app.use("/", require("./server/routes/main")); // to use the main route
 
 app.listen(PORT, () => {
     console.log(`The server running on port -> ${PORT}`);

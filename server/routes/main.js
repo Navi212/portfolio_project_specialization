@@ -58,7 +58,11 @@ function insertPostData() {
 }
 insertPostData();
 
-// Post
+/**
+ * GET /post/:id
+ * Post = post/:id
+ */
+ 
 router.get("/post/:id", async (req, res) => {
     try {
         let postId = req.params.id;
@@ -75,7 +79,10 @@ router.get("/post/:id", async (req, res) => {
     }
 });
 
-// Search
+/**
+ * POST /
+ * Post = searchTerm
+ */
 router.post('/search', async (req, res) => {
     try {
         const locals = {
@@ -90,13 +97,16 @@ router.post('/search', async (req, res) => {
 
           const data = await Post.find({
             $or: [
-                { title: { $regex: (searchNospecialChar, "i") }},
-                { title: { $regex: (searchNospecialChar, "i") }},
+                { title: { $regex: new RegExp(searchNospecialChar, "i") }},
+                { body: { $regex: new RegExp(searchNospecialChar, "i") }},
             ]
         });
 
         //   let perPage = 10;
-        res.send(searchTerm)
+        res.render("search", {
+            data,
+            locals
+        });
     
     //   let page = req.query.page || 1;
     } catch (error) {
