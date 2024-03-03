@@ -18,6 +18,7 @@ app.set("layout", "./layouts/main");  // to use ejs layout
 app.set("view engine", "ejs");  // to use ejs template engine
 
 app.use("/", require("./server/routes/main")); // to use the main route
+app.use("/", require("./server/routes/admin")); // to use the admin route
 
 app.listen(PORT, () => {
     console.log(`The server running on port -> ${PORT}`);
