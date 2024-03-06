@@ -1,6 +1,6 @@
 # ALX Blog Portfolio Project for specialization
 
-# Documentation for the API endpoints
+# Documentation for the API endpoints for server\routes\admin.js
 
 ## POST /admin
 Description: Authenticates a user and generates a JWT token.
@@ -114,3 +114,6 @@ Path Parameters:
 id: ID of the post to delete.
 Response:
 302 Found: Redirect to the dashboard upon successful deletion.
+
+
+# Documentation for the API endpoints for \app.js
