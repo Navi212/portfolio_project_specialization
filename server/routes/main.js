@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const POst = require("../models/Post");
 const Post = require("../models/Post");
 
 // Requesting endpoints
@@ -11,7 +10,7 @@ router.get("/", async (req, res) => {
             description: "EJS Tutorial using node, express and mongodb"
         }
         //Setting pagination
-        let perPage = 3;
+        let perPage = 10;
         let page = req.query.page || 1;
         const data = await Post.aggregate([ { $sort: { createdAt: -1 } }])
         .skip(perPage * page - perPage)
@@ -28,13 +27,56 @@ router.get("/", async (req, res) => {
             locals,
             data,
             current: page,
-            nextPage: hasNextPage ? nextPage : null
+            nextPage: hasNextPage ? nextPage : null,
+            // currentRoute: "/"
         });
-    
     } catch (error) {
         console.log(error);
     }
 });
+
+
+/*
+GET post by id
+*/
+router.get("/post/:id", async (req, res) => {
+    try {
+        let postId = req.params.id;
+        let data = await Post.findById({ _id: postId});
+        const locals = {
+            title: data.title,
+            description: "Simple blog post with NodeJs, Express & MongoDB",
+            // currentRoute: `/post/${postId}`
+        }
+        res.render("post", { locals, data } );
+        // res.render("post", { locals, data, currentRoute } );
+        } catch (error) {
+            console.log(error);
+    }
+});
+
+
+/*
+GET about page
+*/
+router.get("/about", (req, res) => {
+    // res.render("about", {
+    //     currentRoute: "/about"
+    // });
+    res.render("/about")
+});
+
+
+/*
+GET contact page
+*/
+router.get("/contact", (req, res) => {
+    // res.render("contact", {
+    //     currentRoute: "/contact"
+    // });
+    res.render("/contact");
+});
+
 
 // DB Data inserted
 // function insertPostData() {
@@ -54,31 +96,5 @@ router.get("/", async (req, res) => {
 //    ]);
 // }
 // insertPostData();
-
-router.get("/post/:id", async (req, res) => {
-    try {
-        let postId = req.params.id;
-        let data = await Post.findById({ _id: postId});
-
-        const locals = {
-            title: data.title,
-            description: "Simple blog post with NodeJs, Express & MongoDB"
-        }
-
-        res.render("post", { locals, data} );
-        } catch (error) {
-            console.log(error);
-    }
-});
-
-
-
-router.get("/about", (req, res) => {
-    res.render("about");
-});
-
-router.get("/contact", (req, res) => {
-    res.render("contact");
-});
 
 module.exports = router;

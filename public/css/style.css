@@ -9,7 +9,6 @@
     --font-size-md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
     --font-size-lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
     --font-size-x1: clamp(2.44rem, 2.38vw + 1.85rem, 3.15rem);
-
     --border-radius: 10px;
 }
 
@@ -322,8 +321,8 @@ img {
     color: var(--gray-light);
     border: 0;
     text-decoration: none;
-    font-size: 8rem;
-    padding: 4px 8px;
+    font-size: 1rem;
+    padding: 0px 8px;
     line-height: 2;
 }
 
