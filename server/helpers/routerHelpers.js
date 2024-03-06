@@ -1,5 +1,5 @@
-// const isActiveRoute = (route, currentRoute) => {
-//     return route === currentRoute ? "active" : "";
-// }
+const isActiveRoute = (route, currentRoute) => {
+    return route === currentRoute ? "active" : "";
+}
 
-// module.exports = { isActiveRoute };
+module.exports = { isActiveRoute };

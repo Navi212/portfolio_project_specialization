@@ -14,16 +14,23 @@ access token
 const auth = (req, res, next) => {
     const token = req.cookies.token;
     if (!token) {
-        return res.status(401).json({ message: "Authorized" });
+        return res.status(401).json({ message: "Unauthorized" });
     }
     try {
         const decodedToken = jwt.verify(token, jwtSecret);
         req.userId = decodedToken.userId;
         next();
     } catch (error) {
-        return res.status(401).json({ message: "Authorized" });
+        return res.status(401).json({ message: "Unauthorized" });
     }
 }
+
+/*
+GET for admin route
+*/
+router.get("/search", async(req, res) => {
+    res.redirect("admin");
+});
 
 /*
 GET for admin route
@@ -51,11 +58,11 @@ router.post("/admin", async(req, res) => {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
         if (!user) {
-            return res.status(401).json({ message: "Invalid email" });
+            return res.status(401).json({ message: "Invalid credentials" });
         }
         const isValidPassword = await bcrypt.compare(password, user.password);
         if (!isValidPassword) {
-            return res.status(401).json({ message: "Invalid password" });
+            return res.status(401).json({ message: "Invalid credentials" });
         }
         const token = jwt.sign({ userId: user._id }, jwtSecret);
         res.cookie("token", token, { httpOnly: true });
@@ -167,7 +174,9 @@ router.put("/edit-post/:id", auth, async(req, res) => {
 GET register
 */
 router.get("/register", async(req, res) => {
-    res.render("admin/register");
+    res.render("admin/register", {
+        currentRoute: "/register"
+    });
 });
 
 
