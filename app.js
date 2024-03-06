@@ -1,3 +1,4 @@
+// Import environment variables from a .env file
 require("dotenv").config();
 
 const express = require("express");
